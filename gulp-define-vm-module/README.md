@@ -16,8 +16,8 @@ gulp.src('./statics/dev/*/index.js')
         .pipe(browserify({debug:false}))
         .pipe(derequire())
         .pipe(defineVMModule('amd', {
-            deps:[],
-            prefix: ''
+            deps:[],//依赖
+            prefix: ''//生成文件的前缀
         }))
         .pipe(gulp.dest('./statics/dev/'));
 ```

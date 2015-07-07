@@ -2,12 +2,12 @@
 
 [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Code Climate][codeclimate-image]][codeclimate-url] [![Coverage Status][coverage-image]][coverage-url] [![Dependencies][david-image]][david-url] [![devDependencies][david-dev-image]][david-dev-url]
 
-gulp-define-vm-module 此插件可以将browserify合并的代码生成AMD风格的模块化文件，返回browserify中的第一个模块对象, 生成的文件名为源文件的最后一个目录名，比如： gulp.src('./js/module1/index.js') 将生成 dest/module1.js.
+gulp-define-vm-module 此插件可以将browserify合并的代码生成AMD风格的模块化文件，返回browserify中的主模块对象, 生成的文件名为源文件的最后一个目录名，比如： gulp.src('./js/module1/index.js') 将把index.js及其依赖包装生成 dest/module1.js.
 
 ```javascript
 define('moduleName', function(require, exports, module){
 var mod = (browserify script);
-return mod['1'];
+return mod['{mainModuleID}'];
 })
 ```
 use Example

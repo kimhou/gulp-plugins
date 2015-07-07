@@ -24,8 +24,10 @@ function makeAMD(path, moduleContents, opts) {
       defines.push(define);
     }
   });
+  var exportModule = moduleContents.split(/\[|\]/);
+  exportModule = exportModule && exportModule.length > 1 && exportModule[exportModule.length - 2] || 0;
   return 'define(' + (name && name.length ? '"' + (opts.prefix || '') + name + '", ' : '') + ((includes && includes.length) ? '[' + includes.join(', ') + '], ' : '') +
-      'function(require, exports, module) { \r\nvar mod = ' + moduleContents + '; \r\nreturn mod("1");\r\n});';
+      'function(require, exports, module) { \r\nvar mod = ' + moduleContents + '; \r\nreturn mod("' + exportModule + '");\r\n});';
 }
 
 function makeCommonJS(moduleContents, opts) {

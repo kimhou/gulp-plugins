@@ -1,8 +1,7 @@
 0 info it worked if it ends with ok
 1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
 1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
-1 verbose cli   'publish',
-1 verbose cli   '.' ]
+1 verbose cli   'publish' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.35
 4 verbose publish [ '.' ]
@@ -62,7 +61,7 @@
 28 silly publish   gitHead: '03bac804f85ffb486dfb9c4eae8bc3b4dd16cd7e',
 28 silly publish   bugs: { url: 'https://github.com/kimhou/gulp-plugins/gulp-define-vm-module/issues' },
 28 silly publish   _id: 'gulp-define-vm-module@0.1.0',
-28 silly publish   _shasum: '315c5a90b8423605875ca375518e1aac3a00df5f',
+28 silly publish   _shasum: '060152887076d9865750d2d4c5f99c1383f2e636',
 28 silly publish   _from: '.',
 28 silly publish   _npmVersion: '2.1.18',
 28 silly publish   _nodeVersion: '0.10.26',
@@ -73,29 +72,29 @@
 28 silly publish      tarball: 'http://registry.npmjs.org/gulp-define-vm-module/-/gulp-define-vm-module-0.1.0.tgz' },
 28 silly publish   directories: {},
 28 silly publish   _resolved: 'https://registry.npmjs.org/gulp-define-vm-module/-/gulp-define-vm-module-0.1.0.tgz',
-28 silly publish   readme: '# gulp-define-vm-module\n\n[![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Code Climate][codeclimate-image]][codeclimate-url] [![Coverage Status][coverage-image]][coverage-url] [![Dependencies][david-image]][david-url] [![devDependencies][david-dev-image]][david-dev-url]\n\ngulp-define-vm-module 此插件可以将browserify合并的代码生成AMD风格的模块化文件，返回browserify中的主模块对象, 生成的文件名为源文件的最后一个目录名，比如： gulp.src(\'./js/module1/index.js\') 将把index.js及其依赖包装生成 dest/module1.js.\n\n```javascript\ndefine(\'moduleName\', function(require, exports, module){\nvar mod = (browserify script);\nreturn mod[\'{mainModuleID}\'];\n})\n```\nuse Example\n```javascript\ngulp.src(\'./statics/dev/*/index.js\')\n        .pipe(browserify({debug:false}))\n        .pipe(derequire())\n        .pipe(defineVMModule(\'amd\', {\n            deps:[],//依赖\n            prefix: \'\'//生成文件的前缀\n        }))\n        .pipe(gulp.dest(\'./statics/dev/\'));\n```\n\n\n## License\n\nThis project is distributed under the MIT license.\n\n\n[travis-url]: http://travis-ci.org/wbyoung/gulp-define-vm-module\n[travis-image]: https://secure.travis-ci.org/wbyoung/gulp-define-vm-module.png?branch=master\n[npm-url]: https://npmjs.org/package/gulp-define-vm-module\n[npm-image]: https://badge.fury.io/js/gulp-define-vm-module.png\n[codeclimate-image]: https://codeclimate.com/github/wbyoung/gulp-define-vm-module.png\n[codeclimate-url]: https://codeclimate.com/github/wbyoung/gulp-define-vm-module\n[coverage-image]: https://coveralls.io/repos/wbyoung/gulp-define-vm-module/badge.png\n[coverage-url]: https://coveralls.io/r/wbyoung/gulp-define-vm-module\n[david-image]: https://david-dm.org/wbyoung/gulp-define-vm-module.png?theme=shields.io\n[david-url]: https://david-dm.org/wbyoung/gulp-define-vm-module\n[david-dev-image]: https://david-dm.org/wbyoung/gulp-define-vm-module/dev-status.png?theme=shields.io\n[david-dev-url]: https://david-dm.org/wbyoung/gulp-define-vm-module#info=devDependencies\n\n[gulp-define-vm-module]: https://github.com/wbyoung/gulp-define-vm-module\n[gulp-handlebars]: https://github.com/lazd/gulp-handlebars\n[gulp-ember-emblem]: https://github.com/wbyoung/gulp-ember-emblem\n[lodash.template]: http://lodash.com/docs#template\n',
+28 silly publish   readme: '# gulp-define-vm-module\n\n[![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Code Climate][codeclimate-image]][codeclimate-url] [![Coverage Status][coverage-image]][coverage-url] [![Dependencies][david-image]][david-url] [![devDependencies][david-dev-image]][david-dev-url]\n\ngulp-define-vm-module 此插件可以将browserify合并的代码生成AMD风格的模块化文件，返回browserify中的第一个模块对象, 生成的文件名为源文件的最后一个目录名，比如： gulp.src(\'./js/module1/index.js\') 将生成 dest/module1.js.\n\n```javascript\ndefine(\'moduleName\', function(require, exports, module){\nvar mod = (browserify script);\nreturn mod[\'1\'];\n})\n```\nuse Example\n```javascript\ngulp.src(\'./statics/dev/*/index.js\')\n        .pipe(browserify({debug:false}))\n        .pipe(derequire())\n        .pipe(defineVMModule(\'amd\', {\n            deps:[],//依赖\n            prefix: \'\'//生成文件的前缀\n        }))\n        .pipe(gulp.dest(\'./statics/dev/\'));\n```\n\n\n## License\n\nThis project is distributed under the MIT license.\n\n\n[travis-url]: http://travis-ci.org/wbyoung/gulp-define-vm-module\n[travis-image]: https://secure.travis-ci.org/wbyoung/gulp-define-vm-module.png?branch=master\n[npm-url]: https://npmjs.org/package/gulp-define-vm-module\n[npm-image]: https://badge.fury.io/js/gulp-define-vm-module.png\n[codeclimate-image]: https://codeclimate.com/github/wbyoung/gulp-define-vm-module.png\n[codeclimate-url]: https://codeclimate.com/github/wbyoung/gulp-define-vm-module\n[coverage-image]: https://coveralls.io/repos/wbyoung/gulp-define-vm-module/badge.png\n[coverage-url]: https://coveralls.io/r/wbyoung/gulp-define-vm-module\n[david-image]: https://david-dm.org/wbyoung/gulp-define-vm-module.png?theme=shields.io\n[david-url]: https://david-dm.org/wbyoung/gulp-define-vm-module\n[david-dev-image]: https://david-dm.org/wbyoung/gulp-define-vm-module/dev-status.png?theme=shields.io\n[david-dev-url]: https://david-dm.org/wbyoung/gulp-define-vm-module#info=devDependencies\n\n[gulp-define-vm-module]: https://github.com/wbyoung/gulp-define-vm-module\n[gulp-handlebars]: https://github.com/lazd/gulp-handlebars\n[gulp-ember-emblem]: https://github.com/wbyoung/gulp-ember-emblem\n[lodash.template]: http://lodash.com/docs#template\n',
 28 silly publish   readmeFilename: 'README.md' }
 29 verbose request where is /gulp-define-vm-module
 30 verbose request registry https://registry.npmjs.org/
-31 verbose request id 3a069073bd4128b5
+31 verbose request id 79ac90e2a8562ebe
 32 verbose url raw /gulp-define-vm-module
 33 verbose url resolving [ 'https://registry.npmjs.org/', './gulp-define-vm-module' ]
 34 verbose url resolved https://registry.npmjs.org/gulp-define-vm-module
 35 verbose request where is https://registry.npmjs.org/gulp-define-vm-module
-36 info trying registry request attempt 1 at 18:25:58
+36 info trying registry request attempt 1 at 17:31:30
 37 http PUT https://registry.npmjs.org/gulp-define-vm-module
 38 http 403 https://registry.npmjs.org/gulp-define-vm-module
 39 verbose headers { 'content-type': 'application/json',
 39 verbose headers   'cache-control': 'max-age=60',
 39 verbose headers   'content-length': '95',
 39 verbose headers   'accept-ranges': 'bytes',
-39 verbose headers   date: 'Tue, 07 Jul 2015 09:24:37 GMT',
+39 verbose headers   date: 'Mon, 27 Jul 2015 08:31:31 GMT',
 39 verbose headers   via: '1.1 varnish',
 39 verbose headers   connection: 'keep-alive',
-39 verbose headers   'x-served-by': 'cache-nrt6130-NRT',
+39 verbose headers   'x-served-by': 'cache-hkg6821-HKG',
 39 verbose headers   'x-cache': 'MISS',
 39 verbose headers   'x-cache-hits': '0',
-39 verbose headers   'x-timer': 'S1436261075.681475,VS0,VE1734' }
+39 verbose headers   'x-timer': 'S1437985890.654549,VS0,VE930' }
 40 error publish Failed PUT 403
 41 error Error: "You cannot publish over the previously published version 0.1.0." : gulp-define-vm-module
 41 error     at RegClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:308:14)
@@ -112,8 +111,8 @@
 42 error including the npm and node versions, at:
 42 error     <http://github.com/npm/npm/issues>
 43 error System Windows_NT 6.1.7601
-44 error command "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish" "."
-45 error cwd C:\Users\kimhou\myGithub\gulp-plugins\gulp-define-vm-module
+44 error command "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish"
+45 error cwd D:\SVN\TDSQL\trunk\front\node_modules\gulp-define-vm-module
 46 error node -v v0.10.35
 47 error npm -v 1.4.28
 48 verbose exit [ 1, true ]

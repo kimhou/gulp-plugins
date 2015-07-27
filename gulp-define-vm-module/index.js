@@ -4,7 +4,7 @@ var path = require('path');
 var gutil = require('gulp-util');
 var _ = require('lodash');
 
-function makeAMD(path, moduleContents, opts) {
+function makeCMD(path, moduleContents, opts) {
   // define(['dependency'], function(Dependency) { return moduleObject; });
   var includes = [];
   var defines = [];
@@ -18,54 +18,24 @@ function makeAMD(path, moduleContents, opts) {
   if(!name){
     throw (new Error('module name error!!'));
   }
-  _.each(opts.deps, function(include, define) {
+
+  var vmRequire = [];
+  _.each(opts.deps, function(include) {
     if (include !== null) {
-      includes.push(JSON.stringify(include));
-      defines.push(define);
+      vmRequire.push('require(' + JSON.stringify(include) + ');');
     }
   });
+  moduleContents = moduleContents.replace(/window\[('|")require('|")\]/g, 'require');
   var exportModule = moduleContents.split(/\[|\]/);
   exportModule = exportModule && exportModule.length > 1 && exportModule[exportModule.length - 2] || 0;
-  return 'define(' + (name && name.length ? '"' + (opts.prefix || '') + name + '", ' : '') + ((includes && includes.length) ? '[' + includes.join(', ') + '], ' : '') +
-      'function(require, exports, module) { \r\nvar mod = ' + moduleContents + '; \r\nreturn mod("' + exportModule + '");\r\n});';
+
+  return 'define(' + (name && name.length ? '"' + (opts.prefix || '') + name + '", ' : '') +
+      'function(require, exports, module) { \r\n' +
+      vmRequire.join('\r\n') +
+      '\r\nvar mod = ' + moduleContents + '; \r\nreturn mod("' + exportModule + '");\r\n});';
 }
 
-function makeCommonJS(moduleContents, opts) {
-  // var Dependency = require('dependency');module.exports = moduleObject;
-  var requires = _.map(opts.require, function(key, value) {
-    if (key !== null) {
-      return 'var ' + value + ' = require(' + JSON.stringify(key) + ');';
-    }
-  });
-  return requires.join('') + 'module.exports = ' + moduleContents + ';';
-}
-
-function makeHybrid(moduleContents, opts) {
-  // (function(definition) { if (typeof exports === 'object') { module.exports = definition(require('library')); }
-  // else if (typeof define === 'function' && define.amd) { define(['library'], definition); } else { definition(Library); }
-  // })(function(Library) { return moduleObject; });
-  var includes = [];
-  var requires = [];
-  var defines = [];
-  _.each(opts.require, function(include, define) {
-    includes.push(JSON.stringify(include));
-    requires.push('require(' + JSON.stringify(include) + ')');
-    defines.push(define);
-  });
-
-  return '(function(definition) { ' +
-    'if (typeof exports === \'object\') { module.exports = definition(' + requires.join(',') + '); } ' +
-    'else if (typeof define === \'function\' && define.amd) { define([' + includes.join(',') + '], definition); } ' +
-    'else { definition(' + defines.join(',') + '); } ' +
-    '})(function(' + defines.join(',') + ') { return ' + moduleContents + '; });';
-}
-
-function makePlain(moduleContents, opts) {
-  // moduleObject;
-  return moduleContents + ';';
-}
-
-module.exports = function(type, options) {
+module.exports = function(options) {
   return through(function(file) {
     if (file.isNull()) { return this.queue(file); } // pass along
     if (file.isStream()) { return this.emit('error', new gutil.PluginError('gulp-define-vm-module', 'Streaming not supported')); }
@@ -99,27 +69,21 @@ module.exports = function(type, options) {
       contents = _.template(opts.wrapper)(context);
     }
 
-    if (type === 'amd') { contents = makeAMD(file.path, contents, opts); }
-    else if (type === 'commonjs' || type === 'node') { contents = makeCommonJS(contents, opts); }
-    else if (type === 'hybrid') { contents = makeHybrid(contents, opts); }
-    else if (type === 'plain') { contents = makePlain(contents, opts); }
-    else {
-      throw new Error('Unsupported module type for gulp-define-vm-module: ' + type);
-    }
+    contents = makeCMD(file.path, contents, opts);
 
     file.path = gutil.replaceExtension(file.path, '.js');
-    file.path = rename(file.path);
+    file.path = rename(file.path, options.moduleName);
     file.contents = new Buffer(contents);
     this.queue(file);
   });
 
-  function rename(path){
+  function rename(path, moduleName){
     var splite = '\\';
     if(path.indexOf('/') != -1 && path.indexOf(splite) == -1){
       splite = '/';
     }
     var arr = path.split(splite);
-    var name = arr && arr.length > 1 && arr[arr.length - 2];
+    var name = moduleName ? moduleName : arr && arr.length > 1 && arr[arr.length - 2];
 
     var p = arr.splice(0, arr.length - 2);
 

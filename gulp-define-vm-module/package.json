@@ -1,6 +1,6 @@
 {
   "name": "gulp-define-vm-module",
-  "version": "0.1.1",
+  "version": "0.1.6",
   "description": "gulp.js plugin for creating modules",
   "homepage": "https://github.com/kimhou/gulp-plugins/tree/master/gulp-define-vm-module",
   "main": "index.js",
@@ -35,27 +35,27 @@
   },
   "gitHead": "03bac804f85ffb486dfb9c4eae8bc3b4dd16cd7e",
   "bugs": {
-    "url": "https://github.com/kimhou/gulp-plugins/tree/master/gulp-define-vm-module/issues"
+    "url": "https://github.com/kimhou/gulp-plugins/issues"
   },
-  "_id": "gulp-define-vm-module@0.1.0",
+  "_id": "gulp-define-vm-module@",
   "_shasum": "ad71b4696c3258252b289776ff6580d64a1ab51b",
   "_from": "gulp-define-vm-module@",
   "_npmVersion": "2.1.18",
   "_nodeVersion": "0.10.26",
   "_npmUser": {
-    "name": "wbyoung",
-    "email": "wbyoung@fadingred.com"
+    "name": "kimhou",
+    "email": "kimhou.life@gmail.com"
   },
   "maintainers": [
     {
-      "name": "wbyoung",
-      "email": "wbyoung@fadingred.com"
+      "name": "kimhou",
+      "email": "kimhou.life@gmail.com"
     }
   ],
   "dist": {
     "shasum": "ad71b4696c3258252b289776ff6580d64a1ab51b",
-    "tarball": "http://registry.npmjs.org/gulp-define-vm-module/-/gulp-define-vm-module-0.1.0.tgz"
+    "tarball": "http://registry.npmjs.org/gulp-define-vm-module/-/gulp-define-vm-module-0.1.5.tgz"
   },
   "directories": {},
-  "_resolved": "https://registry.npmjs.org/gulp-define-vm-module/-/gulp-define-vm-module-0.1.0.tgz"
+  "_resolved": "https://registry.npmjs.org/gulp-define-vm-module/-/gulp-define-vm-module-0.1.5.tgz"
 }

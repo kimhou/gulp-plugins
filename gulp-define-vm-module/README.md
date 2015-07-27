@@ -19,7 +19,8 @@ gulp.src(moduleDir + '/index.js')
                 console.log(err)
             })
             .pipe(derequire())
-            .pipe(defineVMModule('amd', {
+            .pipe(defineVMModule({
+                moduleName: moduleName, //可选， 合并生文件名，为空时则为index.js的目录名
                 deps: depends,
                 prefix: ''
             }))

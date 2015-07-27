@@ -1,6 +1,6 @@
 {
   "name": "gulp-define-vm-module",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "gulp.js plugin for creating modules",
   "homepage": "https://github.com/kimhou/gulp-plugins/tree/master/gulp-define-vm-module",
   "main": "index.js",

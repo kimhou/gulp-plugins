@@ -1,6 +1,6 @@
 {
   "name": "gulp-ejs-compile-commonjs",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "compile ejs files to commonJs module file.",
   "main": "index.js",
   "scripts": {
@@ -8,21 +8,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/kimhou/gulp-plugins/tree/master/gulp-ejs-commonjs-amd"
+    "url": "https://github.com/kimhou/gulp-plugins/tree/master/gulp-ejs-compile-commonjs"
   },
   "keywords": [
     "ejs",
     "compile"
   ],
   "author": {
-    "name":"kimhou",
-    "email":"honkang@163.com",
-    "url":"http://www.kimhou.net"
+    "name": "kimhou",
+    "email": "honkang@163.com",
+    "url": "http://www.kimhou.net"
   },
   "license": "MIT",
   "dependencies": {
     "ejs": "^1.0.0",
     "gulp-util": "^2.2.14",
     "through2": "^0.4.1"
-  }
+  },
+  "readme": "# gulp-ejs-compile-commonjs\n\n[![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Code Climate][codeclimate-image]][codeclimate-url] [![Coverage Status][coverage-image]][coverage-url] [![Dependencies][david-image]][david-url] [![devDependencies][david-dev-image]][david-dev-url]\n\ngulp-ejs-compile-commonjs 此插件可以将ejs模板编译成js文件并合并生成commonJs风格的模块化文件.\n\n##DEMO\n\ntmpl1.ejs\n```ejs\n<h1><%=title%></h1>\n```\ntmpl2.ejs\n```ejs\n<div><%=name%></div>\n```\nresult:\n```javascript\nvar tmpl = {\n\"tmpl1\": function (data) {\nvar __p=[],_p=function(s){__p.push(s)};\n;_p('<h1>');\n;_p(__e(title));\n;_p('</h1>\\r\\n\\\n');\nreturn __p.join(\"\");\n},\n\"tmpl2\": function (data) {\nvar __p=[],_p=function(s){__p.push(s)};\n;_p('<div>');\n;_p(__e(name));\n;_p('</div>\\r\\n\\\n');\nreturn __p.join(\"\");\n}\n};\nmodule.exports = tmpl;\n```\nuse module:\n```javascript\nvar tmpl = require('tmpl');\nvar tempStr = tmpl.tmpl1({params...});\n```\n\n##Use Example\n```javascript\nvar ejsCompiler = require('gulp-ejs-compile-commonjs');\ngulp.src('./js/*/tmpl/*.ejs')\n\t.pipe(ejsCompiler('tmpl.js'))\n\t.pipe(gulp.dest('./dist/'));\n```\n\n\n## License\n\nThis project is distributed under the MIT license.\n\n",
+  "readmeFilename": "README.md",
+  "_id": "gulp-ejs-compile-commonjs@0.1.0",
+  "_shasum": "6c464c7a9942aa1df96669adfdc88ef101b3cb8c",
+  "_from": "gulp-ejs-compile-commonjs@"
 }
